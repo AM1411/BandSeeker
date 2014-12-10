@@ -1,0 +1,52 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 19, 2014, 8:52:48 PM
+    Author     : George
+*/
+* {
+    margin: 0;
+}
+
+html,body {
+    height: 100%;
+}
+
+.nav{
+   //background-color: rgb(44,62,80); 
+}
+
+.nav a {
+  color: black;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 14px 10px;
+  text-transform: uppercase;
+}
+
+.jumbotron {
+    //background-image: url('../photos/music.jpg');
+    min-height: 800px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.jumbotron .container {
+    //position: relative;
+    //top:100px;
+    margin: 0 auto;
+}
+
+.nav li {
+  display: inline;
+}
+
+.footer {
+    //background-color: rgb(44,62,80);
+    background-color: #f2f2f2;
+}
+
