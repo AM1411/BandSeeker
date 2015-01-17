@@ -9,17 +9,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h1>BANDSEEKER</h1>
+                <h1><b>BANDSEEKER</b></h1>
             </div>
             <div class="col-md-4">
-                <h3>Got lost?</h3>
-                <p></p>
-                <p><a href="help.html">Help</a></p>
+                <h3>Contact</h3>
+                <p>
+                    <b>Written by</b>: <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>George Garyfallou<br> 
+                    <b>Bug Report</b>: <a target="_blank" href="mailto:gegaryfa@inf.uth.gr"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>George Garyfallou</a><br> 
+                </p>
             </div>
             <div class="col-md-4">
                 <h3>About</h3>
-                <p>Find the right musicians near you</p>
-                <p><a href="#">See how to use BanSeeker</a></p>
+                <a href="Help.jsp" class="btn btn-default active" role="button"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> See how to use BanSeeker</a>
             </div>
         </div>
     </div>

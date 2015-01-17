@@ -7,27 +7,29 @@
 <!--
 tsekare an o allos exei kanei login
 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <!--Navigation Bar--> 
-<div class="nav">
+<div class="nav navbar-inverse">
     <div class="container">
-        <ul class="pull-left">
-            <li><a href="index.jsp"><b>BandSeeker</b></a></li>
+        <ul class="pull-left nav nav-pills">
+            <li><a href="index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> BandSeeker</b></a></li>
+            <!--<li><a href="index.jsp"><img src="${pageContext.request.contextPath}/photos/logo.png" /></a></li>-->
+            
             <%
-                
-
-                if (request.getSession().getAttribute("username") != null) {
-                    out.write("<li><a href=\"Profile.jsp\"accesskey=\"a\">My Account</a></li>");
+                if (request.getSession().getAttribute("username") != null) {%>
+                    <li><a href="<c:url value="/Controller?action=profile&profile=${sessionScope.username}" />">My Account</a></li>
+                    <%
                 }
             %>
         </ul>
-        <ul class="pull-right nav-pills">
+        <ul class="pull-right nav nav-pills">
 
             <%
                 String myname = (String) session.getAttribute("username");
 
                 if (myname != null) {
-                    out.write("<li>Hi  " + myname + "</li>");
+                    out.write("<li><a >Hi  " + myname + "</a></li>");
                     out.write("<li><a href=\"Logout\"accesskey=\"q\">Logout</a></li>");
                 } else {
             %>
@@ -38,8 +40,7 @@ tsekare an o allos exei kanei login
                 }
             %>
 
-            <li><a href="Help.jsp">Help</a></li>
-
+            <li><a href="SearchPage.jsp">Search</a></li>
 
         </ul>
     </div>

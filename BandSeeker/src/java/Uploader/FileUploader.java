@@ -6,17 +6,22 @@
 package Uploader;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.sql.DriverManager;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -30,50 +35,7 @@ public class FileUploader extends HttpServlet {
 
     private static final String SAVE_DIR = "UploadedImages";
 
-    /*    @Override
-     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-     throws ServletException, IOException {
-
-     for (Part part : request.getParts()) {
-     /*
-     Connection conn = null;
-     String url = "jdbc:mysql://localhost:3306/";
-     String dbName = "bandseeker";
-     String driver = "com.mysql.jdbc.Driver";
-     */
-    /**
-     * ***************************************************************
-     */
-    /*  String name = part.getName();
-
-     String contentType = part.getContentType();
-
-     if (!contentType.equals("image/png")) {
-     out.println("Only png format image files supported");
-     continue;
-     }
-
-     InputStream is = request.getPart(name).getInputStream();
-     File uploadDir = new File("C:\\Users\\George\\Desktop\\Web Dev\\NetBeans-Java Projects\\My Projects\\BandSeeker\\web\\UploadedImages");
-     File file = File.createTempFile("img", ".png", uploadDir);
-
-     FileOutputStream fos = new FileOutputStream(file);
-
-     int data = 0;
-     while ((data = is.read()) != -1) {
-     fos.write(data);
-     }
-
-     fos.close();
-     is.close();
-
-     out.println("Written file to " + file.getAbsolutePath());
-     }
-
-     out.println("Completed.");
-
-     }
-     */
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -85,15 +47,19 @@ public class FileUploader extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        Connection conn = null;
+        String url = "jdbc:mysql://localhost:3306/";
+        String dbName = "bandseeker";
+        String driver = "com.mysql.jdbc.Driver";
 
         //process only if its multipart content
         if (ServletFileUpload.isMultipartContent(request)) {
             try {
                 // gets absolute path of the web application
-                /////////String appPath = request.getContextPath().toString();  ///pws tha ginei
                 String appPath = request.getServletContext().getRealPath("");     //apothikeuei katw apo to build/web
                 // constructs path of the directory to save uploaded file
-                String savePath = appPath + File.separator + SAVE_DIR;
+                String savePath = appPath +"\\..\\..\\web\\" + File.separator + SAVE_DIR;       //gurnaw pisw st web/
 
                 // creates the save directory if it does not exists
                 File fileSaveDir = new File(savePath);
@@ -104,23 +70,56 @@ public class FileUploader extends HttpServlet {
                 for (Part part : request.getParts()) {
                     String fileName = extractFileName(part);
                     part.write(savePath + File.separator + fileName);
+                   
+                    /*Write info into DataBase--->bandseeker/images*/
+                    
+                    HttpSession session = request.getSession();
+
+                    String[] fn  = fileName.split("[.]");
+                    String stem ="";
+                    String image_extension;
+                    for (int i =0; i<fn.length;i++){
+                        stem += fn[i];
+                        if(i != fn.length -2){
+                            stem+= ".";
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    image_extension = fn[fn.length-1];
+                    
+                    String owner = session.getAttribute("username").toString(); 
+
+
+                    Class.forName(driver).newInstance();
+                    conn = (Connection) DriverManager.getConnection(url + dbName, "admin", "admin");
+                    PreparedStatement pst = (PreparedStatement) conn.prepareStatement("insert into bandseeker.images(stem,image_extension,owner) values(?,?,?)");
+
+
+                    pst.setString(1,stem);
+                    pst.setString(2,image_extension);
+                    pst.setString(3,owner);
+
+                    int i = pst.executeUpdate();
+                    //conn.commit();
+                    pst.close();
+
+                    /***********************************************/
+                    //File uploaded successfully
+                    request.setAttribute("message", "Upload has been done successfully!");  // file name  = "+stem+"."+image_extension+ "  
                 }
-
-                request.setAttribute("message", "Upload has been done successfully! in " + appPath);
-
-            } catch (Exception ex) {
-                request.setAttribute("message", "File Upload Failed due to " + ex);
+            
+            } catch (Exception ex) {    //File upload failed
+                request.setAttribute("message", "File Upload Failed ");  // due to " + ex 
             }
 
         } else {
-            request.setAttribute("message",
-                    "Sorry this Servlet only handles file upload request");
+            request.setAttribute("message","Sorry this Servlet only handles file upload request");
         }
-        //File uploaded successfully
-        //request.setAttribute("message", "File Uploaded Successfully");
         
-
-        request.getRequestDispatcher("/ChangeProfile.jsp").forward(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("ChangeProfile.jsp");
+        rd.forward(request, response);
 
     }
     

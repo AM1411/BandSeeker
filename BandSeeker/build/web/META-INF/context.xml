@@ -2,6 +2,6 @@
 <Context antiJARLocking="true" path="/BandSeeker" allowCasualMultipartParsing="true">
 <Resource name="jdbc/bandseeker" auth="Container" type="javax.sql.DataSource"
                maxActive="100" maxIdle="30" maxWait="10000"
-               username="gi0rikas" password="%ge31705" driverClassName="com.mysql.jdbc.Driver"
+               username="admin" password="admin" driverClassName="com.mysql.jdbc.Driver"
                url="jdbc:mysql://localhost:3306/bandseeker"/>
 </Context>

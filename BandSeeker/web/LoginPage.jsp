@@ -12,7 +12,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/main.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/style/login.css">
@@ -20,20 +21,36 @@
         <title>Login Page</title>
     </head>
     <body> 
-        
+
         <!--Navigation Bar-->  
         <c:import url="/static/header.jsp"></c:import>
-        <!--/Navigation Bar-->    
-        
+        <!--/Navigation Bar--> 
+
+            
+        <%Cookie[] cookies = request.getCookies();
+            String name = "", pass = "";
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("cookieLoginUser")) {
+                        name = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("cookieLoginPassword")) {
+                        pass = cookie.getValue();
+                    }
+                }
+            }
+        %>
+            
+
         <div class="jumbotron">
             <form class="login-form" action="Login" method="POST ">
                 <p class="clearfix">
                     <label for="login">Username</label>
-                    <input type="text" name="username" id="login" placeholder="Username">
+                    <input type="text" name="username" id="login" placeholder="Username" value="<%=name%>"  required/>
                 </p>
                 <p class="clearfix">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password"> 
+                    <input type="password" name="password" id="password" placeholder="Password" value="<%=pass%>"  required/> 
                 </p>
                 <p class="clearfix">
                     <input type="checkbox" name="remember" id="remember">
@@ -44,7 +61,7 @@
                 </p>       
             </form>
         </div>
-        
+
         <!--footer-->
         <c:import url="/static/footer.jsp"></c:import>
         <!--/footer-->
