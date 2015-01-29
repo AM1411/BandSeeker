@@ -8,23 +8,15 @@ package Uploader;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.DriverManager;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
@@ -50,7 +42,7 @@ public class FileUploader extends HttpServlet {
         
         Connection conn = null;
         String url = "jdbc:mysql://localhost:3306/";
-        String dbName = "bandseeker";
+        String dbName = "bandseeker?autoReconnect=true";
         String driver = "com.mysql.jdbc.Driver";
 
         //process only if its multipart content
@@ -59,7 +51,8 @@ public class FileUploader extends HttpServlet {
                 // gets absolute path of the web application
                 String appPath = request.getServletContext().getRealPath("");     //apothikeuei katw apo to build/web
                 // constructs path of the directory to save uploaded file
-                String savePath = appPath +"\\..\\..\\web\\" + File.separator + SAVE_DIR;       //gurnaw pisw st web/
+                //String savePath = appPath +"\\..\\..\\web\\" + File.separator + SAVE_DIR;       //gurnaw pisw st web/
+                String savePath = appPath + File.separator + SAVE_DIR;       //gurnaw pisw st web/
 
                 // creates the save directory if it does not exists
                 File fileSaveDir = new File(savePath);

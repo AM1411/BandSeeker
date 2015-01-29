@@ -11,12 +11,34 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>BandSeeker</title>
         
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" />
+       
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/home.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/home.css" />
+        
+        <script>
+            navigator.browserInfo= (function(){
+                var ua= navigator.userAgent, tem, 
+                M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+                if(/trident/i.test(M[1])){
+                    tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+                    return 'IE '+(tem[1] || '');
+                }
+                if(M[1]=== 'Chrome'){
+                    tem= ua.match(/\bOPR\/(\d+)/)
+                    if(tem!= null) return 'Opera '+tem[1];
+                }
+                M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+                if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+                return M.join(' ');
+            })();
+            
+        </script>
     </head>
     <body>
 
@@ -29,7 +51,7 @@
             
             <div class="container">
                 
-                <h1>Find musicians in Volos and start making music</h1>
+                <h1>Find musicians in Greece and start making music</h1>
 
                 <div class="samples"><!--samples apo kataxwriseis-->
 
@@ -56,7 +78,7 @@
                             <td>
                                 <div class="pic">
                                     <a href="<c:url value="/Controller?action=profile&profile=${image.owner}" />"><!-- if user clicks on the image go to Controller (Controller) with action=profile -->
-                                        <img src="${pageContext.request.contextPath}/UploadedImages/${imgname}" class="img-responsive img-rounded" />
+                                        <img width="200" src="${pageContext.request.contextPath}/UploadedImages/${imgname}" class="img-responsive img-rounded" />
                                         <span class="text-content"><span>${image.owner}</span></span>
                                     </a>
                                 </div>

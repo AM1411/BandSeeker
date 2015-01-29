@@ -14,7 +14,6 @@ tsekare an o allos exei kanei login
     <div class="container">
         <ul class="pull-left nav nav-pills">
             <li><a href="index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> BandSeeker</b></a></li>
-            <!--<li><a href="index.jsp"><img src="${pageContext.request.contextPath}/photos/logo.png" /></a></li>-->
             
             <%
                 if (request.getSession().getAttribute("username") != null) {%>
@@ -41,6 +40,7 @@ tsekare an o allos exei kanei login
             %>
 
             <li><a href="SearchPage.jsp">Search</a></li>
+            <li><a href="Help.jsp">Help</a></li>
 
         </ul>
     </div>

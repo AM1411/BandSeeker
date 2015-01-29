@@ -42,7 +42,7 @@ public class Register extends HttpServlet {
         //Connection connection;  
         Connection conn = null;
         String url = "jdbc:mysql://localhost:3306/";
-        String dbName = "bandseeker";
+        String dbName = "bandseeker?autoReconnect=true";
         String driver = "com.mysql.jdbc.Driver";
 
         try {

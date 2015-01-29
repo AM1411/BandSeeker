@@ -12,12 +12,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" />
+        
+        <title>Register</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/main.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/register.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/main.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/register.css" />
 
         <!--jQuery Core-->
         <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
@@ -100,7 +103,7 @@
                                     <input type="password" name="rpassword" placeholder="Retype Password" required/>
                                     <input type="text" name="Fname" placeholder="First Name" required/>
                                     <input type="text" name="Lname" placeholder="Last Name" required/>
-                                    <input type="text" name="email" placeholder="Email" required/>
+                                    <input type="email" name="email" placeholder="Email" required/>
                                     <textarea cols="28" rows="5" name="about" placeholder="Describe what you are looking for.."></textarea>
                                     <input type="submit" name="register" class="signup signup-submit" value="Create Account" />
                                 </div>

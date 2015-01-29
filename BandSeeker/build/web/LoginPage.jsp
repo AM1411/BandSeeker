@@ -12,13 +12,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" />
         
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/main.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/login.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/main.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/style/login.css" />
 
-        <title>Login Page</title>
+        <title>Login</title>
     </head>
     <body> 
 
