@@ -13,8 +13,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>BandSeeker</title>
         
-        <link rel="shortcut icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" sizes="256x256" />
+        <link rel="icon" href="${pageContext.request.contextPath}/photos/favicon.ico" type="image/x-icon" sizes="256x256" />
        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
         <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css" />

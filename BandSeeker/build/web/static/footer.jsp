@@ -15,7 +15,8 @@
                 <h3>Contact</h3>
                 <p>
                     <b>Written by</b>: <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>George Garyfallou<br> 
-                    <b>Bug Report</b>: <a target="_blank" href="mailto:gegaryfa@inf.uth.gr"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>George Garyfallou</a><br> 
+                    <b>Bug Report</b>: <a target="_blank" href="mailto:gegaryfa@inf.uth.gr"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>George Garyfallou</a><br>
+                    <font size="2">Favicon credit goes to Vaggelis Nonas</font>
                 </p>
             </div>
             <div class="col-md-6">
